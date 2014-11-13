@@ -1,49 +1,33 @@
-  	//Torbert, e-mail: smtorbert@fcps.edu
-	//version 4.16.2003
+/**
+ * A robot moves along a row, collecting piles of beepers and placing them one square to
+ * the right.
+ * 
+ * @author kentcollins
+ *
+ */
+import edu.fcps.karel2.Display; 
+import javax.swing.JOptionPane;
 
-   import edu.fcps.karel2.Robot;
-   import edu.fcps.karel2.Display;
-   import javax.swing.JOptionPane;
-    public class Lab08
-   {
-       public static void race(Racer arg)
-      {
-         while(!arg.nextToABeeper())
-         {
-            if(arg.frontIsClear())
-            {
-               arg.move();
-            }
-            else
-            {
-               arg.jumpRight();
-            }
-         }
-      }
-       public static void main(String[] args) 
-      {
-         String filename = JOptionPane.showInputDialog("What robot world?");
-         String type = JOptionPane.showInputDialog("What type of racer?");
-      
-       Display.openWorld("maps/"+filename+".map");
-         Display.setSize(18, 16);
-         Display.setSpeed(10);
-      
-         if(type.equals("Racer"))
-         {
-            race( new Racer(1) );
-         }
-         else if(type.equals("SteepleChaseRacer"))
-         {
-            race( new SteepleChaseRacer(1) );
-         }
-         else if(type.equals("BoxTopRacer"))
-         {
-            race( new BoxTopRacer(1) );
-         }
-         else
-         {
-            System.out.println("Invalid robot type.");
-         }
-      }
-   }
+public class Lab09 {
+	 
+	 public static void main(String[] args) {
+		 String map = JOptionPane.showInputDialog("Which map?");
+		 Display.openWorld("maps/"+map+".map");
+		 Display.setSize(10, 10);
+		 Athlete athena = new Athlete(1, 1, Display.EAST, 0);
+		 for (int count = 1; count<=8; count++) {
+			 int beepersHeld = athena.getBeepers();
+			 while (athena.nextToABeeper()) {
+				 athena.pickBeeper();
+			 }
+			 for (int i = 0; i<beepersHeld; i++) {
+				 athena.putBeeper();
+			 }
+			 athena.move();
+		 }
+		 athena.turnAround();
+		 while(athena.frontIsClear()) {
+			 athena.move();
+		 }
+	 }
+ }
