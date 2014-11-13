@@ -2,9 +2,11 @@
  * A robot moves along a row, collecting piles of beepers and placing them one square to
  * the right.
  * 
- * @author kentcollins
+ * @author <...>
+ * @version <...>
  *
  */
+
 import edu.fcps.karel2.Display; 
 import javax.swing.JOptionPane;
 
@@ -15,19 +17,7 @@ public class Lab09 {
 		 Display.openWorld("maps/"+map+".map");
 		 Display.setSize(10, 10);
 		 Athlete athena = new Athlete(1, 1, Display.EAST, 0);
-		 for (int count = 1; count<=8; count++) {
-			 int beepersHeld = athena.getBeepers();
-			 while (athena.nextToABeeper()) {
-				 athena.pickBeeper();
-			 }
-			 for (int i = 0; i<beepersHeld; i++) {
-				 athena.putBeeper();
-			 }
-			 athena.move();
-		 }
-		 athena.turnAround();
-		 while(athena.frontIsClear()) {
-			 athena.move();
-		 }
+		 //TODO write a combination of definite and indefinite loops that will cause athena
+		 // to pick up each pile of beepers and deposit them one square to the right.
 	 }
  }
